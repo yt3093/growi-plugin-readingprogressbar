@@ -27,13 +27,18 @@ function getHeaderHeight(): number {
   return 0;
 }
 
-function isEditMode(): boolean {
-  return (
+function shouldHideBar(): boolean {
+  const path = location.pathname;
+  // 管理画面: /admin または /admin/ 以下
+  if (path === '/admin' || path.startsWith('/admin/')) return true;
+  // 編集モード
+  if (
     location.hash === '#edit' ||
-    location.pathname.endsWith('/edit') ||
+    path.endsWith('/edit') ||
     document.body.classList.contains('editing') ||
     document.body.classList.contains('grw-editor-mode')
-  );
+  ) return true;
+  return false;
 }
 
 export function createReadingProgressBar(): { mount(): void; unmount(): void } {
@@ -49,7 +54,7 @@ export function createReadingProgressBar(): { mount(): void; unmount(): void } {
   function updateBar(): void {
     if (!bar || !inner) return;
 
-    if (isEditMode()) {
+    if (shouldHideBar()) {
       bar.style.display = 'none';
       return;
     }
@@ -103,6 +108,8 @@ export function createReadingProgressBar(): { mount(): void; unmount(): void } {
     window.addEventListener('scroll', scheduleUpdate, { passive: true });
     window.addEventListener('resize', scheduleUpdate, { passive: true });
     window.addEventListener('popstate', onNavigation);
+    // hash のみ変わる場合（#edit → '' 等）は hashchange で検知
+    window.addEventListener('hashchange', onNavigation);
 
     history.pushState = function (...args) {
       originalPushState(...args);
@@ -121,7 +128,13 @@ export function createReadingProgressBar(): { mount(): void; unmount(): void } {
         scheduleUpdate();
       });
     });
-    observer.observe(document.body, { childList: true, subtree: true, attributes: false });
+    // body の class 変化（editing クラスの付け外し）も検知するため attributes を有効化
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class'],
+    });
 
     scheduleUpdate();
   }
@@ -130,6 +143,7 @@ export function createReadingProgressBar(): { mount(): void; unmount(): void } {
     window.removeEventListener('scroll', scheduleUpdate);
     window.removeEventListener('resize', scheduleUpdate);
     window.removeEventListener('popstate', onNavigation);
+    window.removeEventListener('hashchange', onNavigation);
     window.removeEventListener('growi-rpb-navigate', onNavigation);
 
     history.pushState = originalPushState;
