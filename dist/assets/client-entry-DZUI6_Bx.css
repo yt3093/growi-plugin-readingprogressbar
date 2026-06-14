@@ -1,0 +1,1 @@
+.growi-reading-progress-bar{z-index:1030;pointer-events:none;background-color:#0000;height:3px;position:fixed;left:0;right:0}.growi-reading-progress-bar__inner{background-color:var(--growi-reading-progress-color,#3091c7);width:0%;height:100%;transition:width 80ms linear}@media print{.growi-reading-progress-bar{display:none}}

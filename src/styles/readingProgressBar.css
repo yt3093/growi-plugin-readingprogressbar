@@ -1,0 +1,23 @@
+.growi-reading-progress-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 3px;
+  /* Bootstrap の sticky-top (z-index: 1020) より上、modal (z-index: 1055) より下 */
+  z-index: 1030;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.growi-reading-progress-bar__inner {
+  height: 100%;
+  width: 0%;
+  background-color: var(--growi-reading-progress-color, #3091c7);
+  transition: width 80ms linear;
+}
+
+@media print {
+  .growi-reading-progress-bar {
+    display: none;
+  }
+}
