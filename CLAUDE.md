@@ -2,7 +2,7 @@
 
 ## プロジェクト概要
 
-- **名前**: `growi-plugin-readingprogressbar`
+- **名前**: `growi-plugin-reading-progressbar`
 - **種別**: GROWI Script プラグイン
 - **目的**: wiki ページの閲覧割合をヘッダー直下のプログレスバーで表示する
 
@@ -24,7 +24,7 @@
 ### ファイル構成
 
 ```
-growi-plugin-readingprogressbar/
+growi-plugin-reading-progressbar/
 ├── client-entry.tsx                    # activate / deactivate + pluginActivators 登録
 ├── src/
 │   ├── readingProgressBar.ts           # コア実装（DOM 生成・スクロール監視・遷移検知）

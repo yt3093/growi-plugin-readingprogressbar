@@ -11,4 +11,4 @@ const deactivate = (): void => {
 };
 
 window.pluginActivators = window.pluginActivators ?? {};
-window.pluginActivators['growi-plugin-readingprogressbar'] = { activate, deactivate };
+window.pluginActivators['growi-plugin-reading-progressbar'] = { activate, deactivate };

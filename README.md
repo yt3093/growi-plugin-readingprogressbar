@@ -1,4 +1,4 @@
-# growi-plugin-readingprogressbar
+# growi-plugin-reading-progressbar
 
 GROWI のページ閲覧時に、スクロール進捗をヘッダー直下にプログレスバーで表示する Script プラグインです。
 
