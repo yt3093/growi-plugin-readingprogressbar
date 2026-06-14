@@ -6,23 +6,26 @@
     "dev": "vite",
     "build": "tsc && vite build"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-react": "^6.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.0.0",
-    "vite": "^5.0.0"
+    "vite": "^8.0.16"
   },
   "engines": {
     "node": ">=20",
     "pnpm": ">=8"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "growiPlugin": {
     "schemaVersion": "4",
-    "types": ["script"]
+    "types": [
+      "script"
+    ]
   }
 }
