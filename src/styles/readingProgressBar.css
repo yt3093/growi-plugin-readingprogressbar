@@ -15,3 +15,9 @@
   background-color: var(--growi-reading-progress-color, #3091c7);
   transition: width 80ms linear;
 }
+
+@media print {
+  .growi-reading-progress-bar {
+    display: none;
+  }
+}
