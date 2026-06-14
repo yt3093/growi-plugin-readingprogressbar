@@ -52,6 +52,7 @@ export function createReadingProgressBar(): { mount(): void; unmount(): void } {
   const originalReplaceState = history.replaceState.bind(history);
 
   function updateBar(): void {
+    rafId = null;
     if (!bar || !inner) return;
 
     if (shouldHideBar()) {
@@ -69,8 +70,6 @@ export function createReadingProgressBar(): { mount(): void; unmount(): void } {
     const percent = Math.round(ratio * 100);
     inner.style.width = `${percent}%`;
     bar.setAttribute('aria-valuenow', String(percent));
-
-    rafId = null;
   }
 
   function scheduleUpdate(): void {
